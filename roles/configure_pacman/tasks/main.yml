@@ -7,25 +7,43 @@
     group: root
     mode: '644'
 
-- name: Backup mirrorlist
-  ansible.builtin.copy:
-    src: "{{ mirrors_file }}"
-    dest: "{{ mirrors_file }}.backup_{{ now(fmt='%y.%m.%d_%H:%M:%S') }}"
-    remote_src: true
-    owner: root
-    group: root
-    mode: '644'
-
-- name: Install reflector
+- name: Install packages
   community.general.pacman:
-    name: reflector
+    name:
+      - reflector
+      - pacman-contrib
+      - xdg-user-dirs
     state: present
     update_cache: true
+
+- name: Start and enable paccache.timer
+  ansible.builtin.systemd_service:
+    name: paccache.timer
+    state: started
+    enabled: true
+    daemon_reload: true
+
+- name: Start and enable xdg-user-dirs-update.service
+  ansible.builtin.systemd_service:
+    name: paccache.timer
+    state: started
+    enabled: true
+    daemon_reload: true
+    scope: user
 
 - name: Copy reflector config
   ansible.builtin.template:
     src: reflector.conf.j2
     dest: "{{ reflector_conf_dir }}/reflector.conf"
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Backup mirrorlist
+  ansible.builtin.copy:
+    src: "{{ mirrors_file }}"
+    dest: "{{ mirrors_file }}.backup_{{ now(fmt='%y.%m.%d_%H:%M:%S') }}"
+    remote_src: true
     owner: root
     group: root
     mode: '644'
@@ -57,3 +75,8 @@
     state: started
     enabled: true
     daemon_reload: true
+
+- name: Upgrade system
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes

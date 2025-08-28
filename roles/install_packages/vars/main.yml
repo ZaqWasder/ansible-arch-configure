@@ -35,6 +35,7 @@ pacman_packages:
   - neovim
   - network-manager-applet
   - networkmanager
+  - pacman-contrib
   - pipewire
   - pipewire-alsa
   - pipewire-jack
@@ -64,6 +65,7 @@ pacman_packages:
   - wireplumber
   - wofi
   - xdg-desktop-portal-hyprland
+  - xdg-user-dirs
   - xdg-utils
   - xf86-video-amdgpu
   - xf86-video-ati

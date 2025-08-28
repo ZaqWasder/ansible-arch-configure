@@ -1,6 +1,5 @@
 - name: Configure arch environment
   hosts: local
-  become: true
 
   roles:
     - name: host_info

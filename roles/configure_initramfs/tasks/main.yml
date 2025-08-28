@@ -6,9 +6,11 @@
     owner: root
     group: root
     mode: '644'
+  become: true
 
 - name: Update initramfs
   ansible.builtin.command:
     cmd: mkinitcpio -P
   register: mkinitcpio_result
   failed_when: mkinitcpio_result.rc != 0
+  become: true

@@ -4,9 +4,12 @@
     name: "{{ pacman_packages }}"
     state: present
     update_cache: true
+  become: true
 
 - name: Install font packages
   ansible.builtin.import_tasks: fonts.yml
+  become: true
 
 - name: Install AUR packages
   ansible.builtin.import_tasks: aur.yml
+  become: true

@@ -6,6 +6,7 @@
     owner: root
     group: root
     mode: '644'
+  become: true
 
 - name: Install packages
   community.general.pacman:
@@ -15,6 +16,7 @@
       - xdg-user-dirs
     state: present
     update_cache: true
+  become: true
 
 - name: Start and enable paccache.timer
   ansible.builtin.systemd_service:
@@ -22,6 +24,7 @@
     state: started
     enabled: true
     daemon_reload: true
+  become: true
 
 - name: Start and enable xdg-user-dirs-update.service
   ansible.builtin.systemd_service:
@@ -38,6 +41,7 @@
     owner: root
     group: root
     mode: '644'
+  become: true
 
 - name: Backup mirrorlist
   ansible.builtin.copy:
@@ -47,6 +51,7 @@
     owner: root
     group: root
     mode: '644'
+  become: true
 
 - name: Start and enable reflector.timer
   ansible.builtin.systemd_service:
@@ -54,6 +59,7 @@
     state: started
     enabled: true
     daemon_reload: true
+  become: true
 
 - name: Start and enable reflector.service
   ansible.builtin.systemd_service:
@@ -61,6 +67,7 @@
     state: started
     enabled: true
     daemon_reload: true
+  become: true
 
 - name: Start and enable archlinux-keyring-wkd-sync.timer
   ansible.builtin.systemd_service:
@@ -68,6 +75,7 @@
     state: started
     enabled: true
     daemon_reload: true
+  become: true
 
 - name: Start and enable archlinux-keyring-wkd-sync.service
   ansible.builtin.systemd_service:
@@ -75,8 +83,10 @@
     state: started
     enabled: true
     daemon_reload: true
+  become: true
 
 - name: Upgrade system
   community.general.pacman:
     update_cache: yes
     upgrade: yes
+  become: true

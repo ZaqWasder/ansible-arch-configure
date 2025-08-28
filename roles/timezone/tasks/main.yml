@@ -6,7 +6,9 @@
     owner: root
     group: root
     state: link
+  become: true
 
 - name: Set hardware clock to UTC
   community.general.timezone:
     hwclock: UTC
+  become: true

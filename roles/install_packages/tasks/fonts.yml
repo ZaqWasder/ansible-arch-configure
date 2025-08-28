@@ -1,0 +1,6 @@
+---
+- name: Install fonts
+  community.general.pacman:
+    name: "{{ fonts }}"
+    state: present
+    update_cache: true

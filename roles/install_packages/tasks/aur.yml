@@ -1,0 +1,11 @@
+---
+- name: Install AUR helper
+  kewlfft.aur.aur:
+    name: "{{ aur_helper }}"
+
+- name: Install AUR packages
+  kewlfft.aur.aur:
+    name: "{{ aur_packages }}"
+    state: present
+    use: "{{ aur_helper }}"
+    update_cache: true

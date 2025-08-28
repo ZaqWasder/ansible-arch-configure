@@ -1,0 +1,24 @@
+hostname: arch
+console_font: ter-132b
+timezone: "Europe/Moscow"
+default_locale: en_US.UTF-8
+locales:
+  - en_US.UTF-8
+  - ru_RU.UTF-8
+ntp_servers:
+  - 0.arch.pool.ntp.org
+  - 1.arch.pool.ntp.org
+  - 2.arch.pool.ntp.org
+  - 3.arch.pool.ntp.org
+fallback_ntp_servers:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
+aur_helper: yay
+user:
+  name: jetron
+  full_name: Artem Budarin
+  shell: /usr/bin/zsh
+  additional_groups:
+    - wheel

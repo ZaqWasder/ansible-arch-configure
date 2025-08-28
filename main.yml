@@ -1,0 +1,31 @@
+- name: Configure arch environment
+  hosts: local
+  become: true
+
+  roles:
+    - name: host_info
+      tags: ['host_info']
+
+    - name: configure_console
+      tags: ['configure_console']
+
+    - name: timezone
+      tags: ['timezone']
+
+    - name: ntp
+      tags: ['ntp']
+
+    - name: locale
+      tags: ['locale']
+
+    - name: hostname
+      tags: ['hostname']
+
+    - name: users
+      tags: ['users']
+
+    - name: configure_pacman
+      tags: ['configure_pacman']
+
+    - name: install_packages
+      tags: ['install_packages']

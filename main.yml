@@ -21,11 +21,14 @@
     - name: hostname
       tags: ['hostname']
 
-    - name: users
-      tags: ['users']
+    - name: configure_initramfs
+      tags: ['configure_initramfs']
 
     - name: configure_pacman
       tags: ['configure_pacman']
 
     - name: install_packages
       tags: ['install_packages']
+
+    - name: users
+      tags: ['users']

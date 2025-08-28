@@ -1,0 +1,14 @@
+---
+- name: Copy mkinitcpio.conf
+  ansible.builtin.copy:
+    src: "mkinitcpio.conf"
+    dest: "/etc/mkinitcpio.conf"
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Update initramfs
+  ansible.builtin.command:
+    cmd: mkinitcpio -P
+  register: mkinitcpio_result
+  failed_when: mkinitcpio_result.rc != 0

@@ -45,11 +45,13 @@ pacman_packages:
   - qt5-wayland
   - qt6-virtualkeyboard
   - qt6-wayland
+  - reflector
   - rsync
   - sddm
   - slurp
   - smartmontools
   - sof-firmware
+  - strace
   - telegram-desktop
   - thunar
   - tmux

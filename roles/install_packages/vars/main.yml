@@ -41,6 +41,7 @@ pacman_packages:
   - pipewire-jack
   - pipewire-pulse
   - polkit-kde-agent
+  - pulsemixer
   - qt5-wayland
   - qt6-virtualkeyboard
   - qt6-wayland

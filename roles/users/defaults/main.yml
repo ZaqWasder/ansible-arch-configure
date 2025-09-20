@@ -1,1 +1,6 @@
 ---
+user:
+  name: archuser
+  full_name: John Doe
+  shell: /bin/bash
+  additional_groups: []

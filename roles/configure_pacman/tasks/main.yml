@@ -13,7 +13,6 @@
     name:
       - reflector
       - pacman-contrib
-      - xdg-user-dirs
     state: present
     update_cache: true
   become: true
@@ -25,32 +24,6 @@
     enabled: true
     daemon_reload: true
   become: true
-
-- name: Copy user-dirs.conf
-  ansible.builtin.copy:
-    src: user-dirs.conf
-    dest: /etc/xdg/user-dirs.conf
-    owner: root
-    group: root
-    mode: '644'
-  become: true
-
-- name: Copy user-dirs.defaults
-  ansible.builtin.copy:
-    src: user-dirs.defaults
-    dest: /etc/xdg/user-dirs.defaults
-    owner: root
-    group: root
-    mode: '644'
-  become: true
-
-- name: Start and enable xdg-user-dirs-update.service
-  ansible.builtin.systemd_service:
-    name: xdg-user-dirs-update.service
-    state: started
-    enabled: true
-    daemon_reload: true
-    scope: user
 
 - name: Copy reflector config
   ansible.builtin.template:

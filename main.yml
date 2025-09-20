@@ -31,3 +31,6 @@
 
     - name: users
       tags: ['users']
+
+    - name: configure_xdg
+      tags: ['configure_xdg']

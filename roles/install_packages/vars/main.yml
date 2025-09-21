@@ -3,6 +3,7 @@ pacman_packages:
   - base
   - base-devel
   - bind
+  - bluetui
   - bluez
   - bluez-utils
   - chezmoi
@@ -75,6 +76,7 @@ pacman_packages:
   - xf86-video-nouveau
   - xorg-server
   - xorg-xinit
+  - yazi
   - zram-generator
   - zsh
 

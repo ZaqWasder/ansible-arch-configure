@@ -1,0 +1,13 @@
+---
+- name: Install irqbalance package
+  community.general.pacman:
+    name: irqbalance
+    state: present
+    update_cache: true
+
+- name: Start irqbalance service
+  ansible.builtin.systemd_service:
+    name: irqbalance
+    state: started
+    enabled: true
+    daemon_reload: true

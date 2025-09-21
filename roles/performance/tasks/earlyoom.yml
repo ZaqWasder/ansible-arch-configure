@@ -1,0 +1,13 @@
+---
+- name: Install earlyoom package
+  community.general.pacman:
+    name: earlyoom
+    state: present
+    update_cache: true
+
+- name: Start earlyoom service
+  ansible.builtin.systemd_service:
+    name: earlyoom
+    state: started
+    enabled: true
+    daemon_reload: true

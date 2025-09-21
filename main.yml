@@ -34,3 +34,6 @@
 
     - name: configure_xdg
       tags: ['configure_xdg']
+
+    - name: performance
+      tags: ['performance']

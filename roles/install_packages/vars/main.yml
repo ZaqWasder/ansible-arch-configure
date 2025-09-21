@@ -9,6 +9,7 @@ pacman_packages:
   - chezmoi
   - dunst
   - efibootmgr
+  - earlyoom
   - fastfetch
   - fzf
   - git
@@ -21,6 +22,7 @@ pacman_packages:
   - hyprpaper
   - intel-media-driver
   - intel-ucode
+  - irqbalance
   - iwd
   - kitty
   - less

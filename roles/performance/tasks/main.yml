@@ -1,0 +1,16 @@
+---
+- name: Install and configure zram-generator
+  ansible.builtin.import_tasks: zram-generator.yml
+  become: true
+
+- name: Install and configure earlyoom
+  ansible.builtin.import_tasks: earlyoom.yml
+  become: true
+
+- name: Enable fstrim
+  ansible.builtin.import_tasks: fstrim.yml
+  become: true
+
+- name: Install and configure irqbalance
+  ansible.builtin.import_tasks: irqbalance.yml
+  become: true

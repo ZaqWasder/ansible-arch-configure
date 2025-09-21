@@ -5,8 +5,8 @@
     - name: host_info
       tags: ['host_info']
 
-    - name: configure_console
-      tags: ['configure_console']
+    - name: console
+      tags: ['console']
 
     - name: timezone
       tags: ['timezone']
@@ -20,20 +20,20 @@
     - name: hostname
       tags: ['hostname']
 
-    - name: configure_initramfs
-      tags: ['configure_initramfs']
+    - name: initramfs
+      tags: ['initramfs']
 
-    - name: configure_pacman
-      tags: ['configure_pacman']
+    - name: pacman
+      tags: ['pacman']
 
-    - name: install_packages
-      tags: ['install_packages']
+    - name: packages
+      tags: ['packages']
 
     - name: users
       tags: ['users']
 
-    - name: configure_xdg
-      tags: ['configure_xdg']
+    - name: xdg
+      tags: ['xdg']
 
     - name: performance
       tags: ['performance']

@@ -1,0 +1,19 @@
+---
+- name: Backup /etc/default/grub
+  ansible.builtin.copy:
+    src: /etc/default/grub
+    dest: /etc/default/grub.backup_{{ now(fmt='%y.%m.%d_%H:%M:%S') }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Copy /etc/default/grub
+  ansible.builtin.template:
+    src: grub.j2
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - Update grub

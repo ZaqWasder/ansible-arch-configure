@@ -23,6 +23,9 @@
     - name: initramfs
       tags: ['initramfs']
 
+    - name: grub
+      tags: ['grub']
+
     - name: pacman
       tags: ['pacman']
 

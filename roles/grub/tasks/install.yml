@@ -1,0 +1,7 @@
+---
+- name: Install package
+  community.general.pacman:
+    name:
+      - grub
+    state: present
+    update_cache: true

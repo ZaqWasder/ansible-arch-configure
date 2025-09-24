@@ -1,0 +1,15 @@
+---
+- name: Create dir for grub themes
+  ansible.builtin.file:
+    path: "{{ grub_theme_dir }}"
+    owner: root
+    group: root
+    state: directory
+    mode: '0755'
+
+- name: Copy theme files
+  ansible.builtin.copy:
+    src: "files/{{ grub_theme_name }}"
+    dest: "{{ grub_theme_dir }}"
+    owner: root
+    group: root

@@ -1,9 +1,8 @@
 ---
-- name: Copy vconsole.conf
-  ansible.builtin.template:
-    src: vconsole.conf.j2
-    dest: /etc/vconsole.conf
-    owner: root
-    group: root
-    mode: '0644'
+- name: Install fonts
+  ansible.builtin.import_tasks: install.yml
+  become: true
+
+- name: Configure console
+  ansible.builtin.import_tasks: configure.yml
   become: true

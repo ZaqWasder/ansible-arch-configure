@@ -1,0 +1,2 @@
+---
+timesyncd_conf_dir: "/etc/systemd/timesyncd.conf.d"

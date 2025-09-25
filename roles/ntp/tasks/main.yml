@@ -1,26 +1,7 @@
 ---
-- name: Create dir for systemd-timesyncd config
-  ansible.builtin.file:
-    path: "{{ conf_dir }}"
-    owner: root
-    group: root
-    state: directory
-    mode: '0755'
-  become: true
+- name: Assert variables
+  ansible.builtin.import_tasks: assert.yml
 
-- name: Copy systemd-timesyncd config
-  ansible.builtin.template:
-    src: local.conf.j2
-    dest: "{{ conf_dir }}/local.conf"
-    owner: root
-    group: root
-    mode: '0644'
-  become: true
-
-- name: Restart systemd-timesyncd service
-  ansible.builtin.systemd_service:
-    name: systemd-timesyncd
-    state: restarted
-    enabled: true
-    daemon_reload: true
+- name: Configure systemd-timesyncd
+  ansible.builtin.import_tasks: configure.yml
   become: true

@@ -1,6 +1,4 @@
 ---
-conf_dir: "/etc/systemd/timesyncd.conf.d"
-
 ntp_servers:
   - 0.arch.pool.ntp.org
   - 1.arch.pool.ntp.org

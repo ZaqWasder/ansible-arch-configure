@@ -1,4 +1,4 @@
 ---
 pacman_conf_dir: "/etc/pacman.d"
-mirrors_file: "{{ pacman_conf_dir }}/mirrorlist"
+pacman_mirrors_file: "{{ pacman_conf_dir }}/mirrorlist"
 reflector_conf_dir: "/etc/xdg/reflector"

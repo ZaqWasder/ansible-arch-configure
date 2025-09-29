@@ -1,11 +1,12 @@
 ---
 - name: Create user
   ansible.builtin.user:
-    name: "{{ user.name }}"
-    comment: "{{ user.full_name }}"
-    groups: "{{ user.additional_groups }}"
-    shell: "{{ user.shell }}"
-    create_home: true
-    append: true
+    name: "{{ item.name }}"
+    comment: "{{ item.full_name }}"
+    groups: "{{ item.additional_groups }}"
+    shell: "{{ item.shell }}"
+    create_home: "{{ item.create_home }}"
+    append: "{{ item.append_groups }}"
     state: present
   become: true
+  loop: "{{ users }}"

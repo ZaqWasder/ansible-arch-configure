@@ -1,0 +1,8 @@
+---
+- name: Update initramfs
+  ansible.builtin.command:
+    cmd: mkinitcpio -P
+  register: mkinitcpio_result
+  failed_when: mkinitcpio_result.rc != 0
+  become: true
+  listen: update_initramfs

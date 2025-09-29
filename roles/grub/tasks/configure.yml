@@ -17,3 +17,4 @@
     mode: '644'
   notify:
     - Update grub
+  changed_when: true

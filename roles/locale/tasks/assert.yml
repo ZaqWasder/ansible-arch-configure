@@ -1,0 +1,15 @@
+---
+- name: Assert default_locale
+  ansible.builtin.assert:
+    that:
+      - default_locale is defined
+      - default_locale is string
+    quiet: true
+
+- name: Assert locales
+  ansible.builtin.assert:
+    that:
+      - locales is defined
+      - locales | type_debug == 'list'
+      - locales | length > 0
+    quiet: true

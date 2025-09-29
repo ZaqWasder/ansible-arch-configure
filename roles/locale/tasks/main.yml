@@ -1,15 +1,7 @@
 ---
-- name: Copy locale.conf
-  ansible.builtin.template:
-    src: locale.conf.j2
-    dest: /etc/locale.conf
-    owner: root
-    group: root
-    mode: '0644'
-  become: true
+- name: Assert
+  ansible.builtin.import_tasks: assert.yml
 
-- name: Ensure locales
-  community.general.locale_gen:
-    name: "{{ locales }}"
-    state: present
+- name: Configure locale
+  ansible.builtin.import_tasks: configure.yml
   become: true

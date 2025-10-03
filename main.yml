@@ -32,11 +32,14 @@
     - name: packages
       tags: ['packages']
 
+    - name: performance
+      tags: ['performance']
+
     - name: users
       tags: ['users']
 
+    - name: dotfiles
+      tags: ['dotfiles']
+
     - name: xdg
       tags: ['xdg']
-
-    - name: performance
-      tags: ['performance']

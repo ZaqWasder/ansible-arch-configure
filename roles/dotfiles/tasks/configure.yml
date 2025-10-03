@@ -1,0 +1,12 @@
+---
+- name: Set common_user variable
+  ansible.builtin.set_fact:
+    common_user: "{{ users | map(attribute='name') | first }}"
+
+- name: Initialize chezmoi
+  ansible.builtin.command: "chezmoi init --apply {{ chezmoi_repo_url }}"
+  args:
+    creates: "{{ chezmoi_source_dir }}"
+  register: chezmoi_result
+  failed_when: chezmoi_result.rc != 0
+  become_user: "{{ common_user }}"

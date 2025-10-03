@@ -41,3 +41,4 @@ users:
       - wheel
     create_home: true
     append_groups: true
+chezmoi_repo_url: "git@github.com:ZaqWasder/dotfiles.git"

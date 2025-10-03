@@ -1,0 +1,10 @@
+---
+- name: Assert variables
+  ansible.builtin.import_tasks: assert.yml
+
+- name: Install dotfiles manager
+  ansible.builtin.import_tasks: install.yml
+  become: true
+
+- name: Configure dotfiles
+  ansible.builtin.import_tasks: configure.yml

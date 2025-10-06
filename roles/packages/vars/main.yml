@@ -39,6 +39,7 @@ pacman_packages:
   - network-manager-applet
   - networkmanager
   - pacman-contrib
+  - openssh
   - pipewire
   - pipewire-alsa
   - pipewire-jack

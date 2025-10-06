@@ -2,8 +2,8 @@
   hosts: local
 
   roles:
-    - name: host_info
-      tags: ['host_info']
+    - name: check
+      tags: ['check']
 
     - name: console
       tags: ['console']

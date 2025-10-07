@@ -1,0 +1,8 @@
+---
+- name: Create ssh_config and set permissions
+  template:
+    src: ssh.conf.j2
+    dest: /etc/ssh/ssh_config
+    mode: "0644"
+    owner: "{{ ssh_owner }}"
+    group: "{{ ssh_group }}"

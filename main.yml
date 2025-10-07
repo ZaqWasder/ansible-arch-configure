@@ -38,6 +38,9 @@
     - name: users
       tags: ['users']
 
+    - name: ssh
+      tags: ['ssh']
+
     - name: dotfiles
       tags: ['dotfiles']
 

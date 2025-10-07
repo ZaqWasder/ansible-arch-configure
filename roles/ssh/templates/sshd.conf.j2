@@ -1,0 +1,113 @@
+{{ ansible_managed | comment }}
+
+# Basic configuration
+# ===================
+
+# Define which port sshd should listen to. Default to `22`.
+{% for port in ssh_server_ports %}
+Port {{ port }}
+{% endfor %}
+
+# Address family should always be limited to the active network configuration.
+AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
+
+# Define which addresses sshd should listen to. Default to `0.0.0.0`, ie make sure you put your desired address in here, since otherwise sshd will listen to everyone.
+{% for address in ssh_listen_to %}
+ListenAddress {{ address }}
+{% endfor %}
+
+
+# Security configuration
+# ======================
+
+# Set the protocol version to 2 for security reasons. Disables legacy support.
+Protocol 2
+
+# Make sure sshd checks file modes and ownership before accepting logins. This prevents accidental misconfiguration.
+StrictModes {{ 'yes' if sshd_strict_modes else 'no' }}
+
+# Logging, obsoletes QuietMode and FascistLogging
+SyslogFacility {{ sshd_syslog_facility }}
+LogLevel {{ sshd_log_level }}
+
+
+# Authentication
+# ==============
+
+LoginGraceTime {{ ssh_login_grace_time }}
+MaxAuthTries {{ ssh_max_auth_retries }}
+MaxSessions {{ ssh_max_sessions }}
+
+# Set AuthenticationMethods per default to publickey
+AuthenticationMethods {{ sshd_authenticationmethods }}
+
+# Either disable or only allow root login via certificates.
+PermitRootLogin {{ 'yes' if ssh_permit_root_login else 'no' }}
+
+PubkeyAuthentication yes
+
+# Never use host-based authentication. It can be exploited.
+IgnoreRhosts yes
+IgnoreUserKnownHosts yes
+HostbasedAuthentication no
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile {{ ssh_authorized_keys_file }}
+
+# Disable password-based authentication, it can allow for potentially easier brute-force attacks.
+PasswordAuthentication {{ 'yes' if ssh_server_password_login else 'no' }}
+PermitEmptyPasswords no
+ChallengeResponseAuthentication {{ 'yes' if ssh_challengeresponseauthentication else 'no' }}
+
+
+# Network
+# =======
+
+# Disable TCP keep alive since it is spoofable. Use ClientAlive messages instead, they use the encrypted channel
+TCPKeepAlive no
+
+# Manage `ClientAlive..` signals via interval and maximum count. This will periodically check up to a `..CountMax` number of times within `..Interval` timeframe, and abort the connection once these fail.
+ClientAliveInterval {{ ssh_client_alive_interval }}
+ClientAliveCountMax {{ ssh_client_alive_count }}
+
+# Disable tunneling
+PermitTunnel {{ 'yes' if ssh_permit_tunnel else 'no' }}
+
+# Disable forwarding tcp connections.
+AllowTcpForwarding {{ 'yes' if ssh_allow_tcp_forwarding else 'no' }}
+
+# Disable agent forwarding, since local agent could be accessed through forwarded connection.
+AllowAgentForwarding {{ 'yes' if ssh_allow_agent_forwarding else 'no' }}
+
+# Port forwardings are forced to bind to the wildcard address
+GatewayPorts {{ 'yes' if ssh_gateway_ports else 'no' }}
+
+# Disable X11 forwarding, since local X11 display could be accessed through forwarded connection.
+X11Forwarding  {{ 'yes' if ssh_x11_forwarding else 'no' }}
+X11UseLocalhost yes
+
+
+# User environment configuration
+# ==============================
+
+PermitUserEnvironment {{ 'yes' if ssh_server_permit_environment_vars else 'no' }}
+{% if ssh_server_accept_env_vars %}
+AcceptEnv {{ ssh_server_accept_env_vars }}
+{% endif %}
+
+
+# Misc. configuration
+# ===================
+
+Compression {{ 'yes' if ssh_compression else 'no' }}
+UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
+PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
+PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
+
+
+{% if sftp_enabled %}
+# SFTP matching configuration
+# ===========================
+Subsystem sftp /usr/lib/ssh/sftp-server
+{% endif %}

@@ -41,6 +41,9 @@
     - name: ssh
       tags: ['ssh']
 
+    - name: gpg
+      tags: ['gpg']
+
     - name: dotfiles
       tags: ['dotfiles']
 

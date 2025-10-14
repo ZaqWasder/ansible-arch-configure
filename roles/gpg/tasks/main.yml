@@ -1,0 +1,7 @@
+---
+- name: Import gpg keys
+  ansible.builtin.command:
+    cmd: "gpg --import {{ item }}"
+  loop:
+    - "{{ gpg_public_key_file_path }}"
+    - "{{ gpg_private_key_file_path }}"

@@ -13,6 +13,7 @@ pacman_packages:
   - fastfetch
   - fzf
   - git
+  - gnupg
   - gopass 
   - grim
   - grub

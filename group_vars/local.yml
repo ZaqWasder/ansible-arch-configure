@@ -46,9 +46,10 @@ chezmoi_repo_url: "git@github.com:ZaqWasder/dotfiles.git"
 # ssh
 ssh_server_enabled: true
 ssh_server_ports: ['2022']
-ssh_client_port: '2022'
+ssh_client_port: '22'
 ssh_print_motd: true
 ssh_print_last_log: true
+
 gpg_keys_dir: "/tmp/gpg"
 gpg_public_key_file_path: "{{ gpg_keys_dir }}/public.gpg"
 gpg_private_key_file_path: "{{ gpg_keys_dir }}/private.gpg"

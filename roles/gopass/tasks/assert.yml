@@ -1,0 +1,8 @@
+---
+- name: Assert gopass_repo_url
+  ansible.builtin.assert:
+    that:
+      - gopass_repo_url is defined
+      - gopass_repo_url is string
+      - gopass_repo_url | length > 0
+    quiet: true

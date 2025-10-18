@@ -1,0 +1,22 @@
+---
+- name: Get gopass config
+  ansible.builtin.command: "gopass config"
+  register: gopass_config
+  failed_when:
+    - gopass_config.rc != 0
+
+- name: Set gopass mounts path variable
+  ansible.builtin.set_fact:
+    gopass_mounts_path: "{{ gopass_config.stdout | regex_search('mounts\\.path\\s*=\\s*(\\S+)', '\\1') | first }}"
+
+- name: Check if gopass store exists
+  ansible.builtin.stat:
+    path: "{{ gopass_mounts_path }}"
+  register: mounts_dir
+
+- name: Clone gopass repo
+  ansible.builtin.command: "gopass clone {{ gopass_repo_url }}"
+  register: gopass_result
+  failed_when: gopass_result.rc != 0
+  when:
+    - not mounts_dir.stat.exists

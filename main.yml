@@ -44,6 +44,9 @@
     - name: gpg
       tags: ['gpg']
 
+    - name: gopass
+      tags: ['gopass']
+
     - name: dotfiles
       tags: ['dotfiles']
 

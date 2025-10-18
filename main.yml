@@ -52,3 +52,6 @@
 
     - name: xdg
       tags: ['xdg']
+
+    - name: firewall
+      tags: ['firewall']

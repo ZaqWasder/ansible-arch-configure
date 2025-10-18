@@ -1,0 +1,8 @@
+---
+- name: Install iptables
+  ansible.builtin.import_tasks: install.yml
+  become: true
+
+- name: Configure iptables
+  ansible.builtin.import_tasks: configure.yml
+  become: true

@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+
+*filter
+
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p ipv6-icmp -j ACCEPT
+{% if ssh_server_enabled %}
+{% for port in ssh_server_ports %}
+-A INPUT -p tcp --dport {{ port }} -j ACCEPT
+{% endfor %}
+{% endif %}
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+COMMIT

@@ -7,6 +7,7 @@ pacman_packages:
   - bluez
   - bluez-utils
   - chezmoi
+  - conntrack-tools
   - dunst
   - efibootmgr
   - earlyoom
@@ -23,6 +24,7 @@ pacman_packages:
   - hyprpaper
   - intel-media-driver
   - intel-ucode
+  - iptables
   - irqbalance
   - iwd
   - kitty

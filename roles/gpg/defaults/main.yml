@@ -1,4 +1,4 @@
 ---
-gpg_keys_dir: "/tmp/gpg"
+gpg_keys_dir: "/tmp/files"
 gpg_public_key_file_path: "{{ gpg_keys_dir }}/public.gpg"
-gpg_private_key_file_path: "{{ gpg_keys_dir }}/private.gpg"
+gpg_private_key_file_path: "{{ gpg_keys_dir }}/secret.gpg"

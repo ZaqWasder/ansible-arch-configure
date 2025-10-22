@@ -7,10 +7,9 @@
     update_cache: true
   become: true
 
-- name: Restart and enable xdg-user-dirs-update.service
-  ansible.builtin.systemd_service:
-    name: xdg-user-dirs-update.service
-    state: restarted
-    enabled: true
-    daemon_reload: true
-    scope: user
+- name: Update xdg user dirs
+  ansible.builtin.command:
+    cmd: xdg-user-dirs-update
+  register: xdg_command_result
+  failed_when: xdg_command_result.rc != 0
+

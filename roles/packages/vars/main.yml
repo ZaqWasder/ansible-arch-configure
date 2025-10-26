@@ -41,8 +41,9 @@ pacman_packages:
   - neovim
   - network-manager-applet
   - networkmanager
-  - pacman-contrib
   - openssh
+  - pacman-contrib
+  - pavucontrol
   - pipewire
   - pipewire-alsa
   - pipewire-jack

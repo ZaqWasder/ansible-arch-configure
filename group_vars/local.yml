@@ -42,6 +42,7 @@ users:
     create_home: true
     append_groups: true
 chezmoi_repo_url: "git@github.com:ZaqWasder/dotfiles.git"
+chezmoi_branch: "hyprland-balcony-theme"
 
 # ssh
 ssh_server_enabled: true

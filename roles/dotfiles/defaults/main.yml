@@ -1,3 +1,4 @@
 ---
 chezmoi_repo_url: ""
 chezmoi_source_dir: "~/.local/share/chezmoi"
+chezmoi_branch: "main"

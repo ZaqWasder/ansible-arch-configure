@@ -1,0 +1,17 @@
+---
+- name: Install package
+  community.general.pacman:
+    name:
+      - sddm
+    state: present
+    update_cache: true
+  become: true
+
+- name: Copy sddm autologin conf
+  ansible.builtin.template:
+    src: autologin.conf.j2
+    dest: "{{ sddm_conf_dir }}/autologin.conf"
+    owner: root
+    group: root
+    mode: '644'
+  become: true

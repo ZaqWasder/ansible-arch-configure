@@ -53,5 +53,8 @@
     - name: xdg
       tags: ['xdg']
 
+    - name: sddm
+      tags: ['sddm']
+
     - name: firewall
       tags: ['firewall']

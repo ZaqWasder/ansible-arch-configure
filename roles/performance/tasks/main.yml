@@ -14,3 +14,7 @@
 - name: Install and configure irqbalance
   ansible.builtin.import_tasks: irqbalance.yml
   become: true
+
+- name: Set sysctl params
+  ansible.builtin.import_tasks: sysctl.yml
+  become: true

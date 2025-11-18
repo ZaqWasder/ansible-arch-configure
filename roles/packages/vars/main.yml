@@ -21,7 +21,9 @@ pacman_packages:
   - gst-plugin-pipewire
   - htop
   - hyprland
+  - hyprshot
   - hyprpaper
+  - hyprpicker
   - intel-media-driver
   - intel-ucode
   - iptables
@@ -41,6 +43,7 @@ pacman_packages:
   - neovim
   - network-manager-applet
   - networkmanager
+  - obsidian
   - openssh
   - pacman-contrib
   - pavucontrol

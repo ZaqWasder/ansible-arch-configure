@@ -22,3 +22,9 @@
 - name: Set grub password
   ansible.builtin.import_tasks: password.yml
   become: true
+  when:
+    - grub_set_password
+    - grub_superuser is defined
+    - grub_superuser | length > 0
+    - grub_superuser_password is defined
+    - grub_superuser_password | length > 0

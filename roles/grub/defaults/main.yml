@@ -4,5 +4,10 @@ grub_timeout: 10
 grub_cmdline_linux_default: "loglevel=3 quiet"
 grub_cmdline_linux: "root=/dev/ArchinstallVg/root zswap.enabled=0 rootfstype=ext4"
 grub_update_command: "grub-mkconfig -o /boot/grub/grub.cfg"
-grub_set_theme: false
 grub_set_password: false
+grub_superuser: admin
+grub_superuser_password: ""
+grub_set_theme: false
+grub_themes_repo_url: ""
+grub_theme_dir: ""
+grub_theme_name: ""

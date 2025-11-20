@@ -1,4 +1,9 @@
 ---
+- name: Remove /etc/grub.d/40_set_grub_password
+  ansible.builtin.file:
+    path: /etc/grub.d/40_set_grub_password
+    state: absent
+
 - name: Backup /etc/default/grub
   ansible.builtin.copy:
     src: /etc/default/grub

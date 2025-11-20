@@ -28,11 +28,12 @@ initramfs_hooks:
   - filesystems
   - fsck
 grub_set_theme: true
+grub_themes_repo_url: "https://github.com/13atm01/GRUB-Theme.git"
 grub_theme_dir: "/usr/share/grub/themes"
-grub_theme_name: "kurumi"
-grub_set_password: true
+grub_theme_name: "Airani-Iofifteen"
+grub_set_password: false
 grub_superuser: admin
-grub_superuser_password: "grub.pbkdf2.sha512.10000.05884F6A1CDC174F4305595F9EB80045F9785A36EE29E72244F8861C97A34D0C984EBA931E638C5BCAB40BC7F1DA1DF78E0B86002807786ADD1469646035D6F4.DDACC3F511A248FFFE39D17537A3421449B05FDD0E4201B600BF3E48A60F854D9C2C63D42AA121D0D5E58DAD656F07E63235D69C20EAA10AB50684B0780DC738"
+grub_superuser_password: ""
 users:
   - name: jetron
     full_name: Artem Budarin

@@ -1,16 +1,16 @@
 ---
-- name: Assert ntp_servers
+- name: Assert primary ntp servers
   ansible.builtin.assert:
     that:
-      - ntp_servers is defined
-      - ntp_servers | type_debug == 'list'
-      - ntp_servers | length > 0
+      - ntp.primary_servers is defined
+      - ntp.primary_servers | type_debug == 'list'
+      - ntp.primary_servers | length > 0
     quiet: true
 
-- name: Assert fallback_ntp_servers
+- name: Assert fallback ntp servers
   ansible.builtin.assert:
     that:
-      - fallback_ntp_servers is defined
-      - fallback_ntp_servers | type_debug == 'list'
-      - fallback_ntp_servers | length > 0
+      - ntp.fallback_servers is defined
+      - ntp.fallback_servers | type_debug == 'list'
+      - ntp.fallback_servers | length > 0
     quiet: true

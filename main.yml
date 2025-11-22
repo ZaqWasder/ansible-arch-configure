@@ -2,9 +2,6 @@
   hosts: local
 
   roles:
-    - name: check
-      tags: ['check']
-
     - name: console
       tags: ['console']
 

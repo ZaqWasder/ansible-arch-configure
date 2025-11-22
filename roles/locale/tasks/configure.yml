@@ -9,5 +9,5 @@
 
 - name: Ensure locales
   community.general.locale_gen:
-    name: "{{ locales }}"
+    name: "{{ [locale.default] + locale.additional }}"
     state: present

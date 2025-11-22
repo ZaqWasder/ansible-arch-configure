@@ -1,7 +1,0 @@
----
-check_temp_dir: "/tmp/files"
-check_required_files:
-  - public.gpg
-  - secret.gpg
-  - id_rsa.pub
-  - id_rsa

@@ -1,10 +1,7 @@
 ---
-- name: Copy mkinitcpio.conf
-  ansible.builtin.template:
-    src: mkinitcpio.conf.j2
-    dest: /etc/mkinitcpio.conf
-    owner: root
-    group: root
-    mode: '644'
+- name: Assert
+  ansible.builtin.import_tasks: assert.yml
+
+- name: Configure initramfs
+  ansible.builtin.import_tasks: configure.yml
   become: true
-  notify: update_initramfs

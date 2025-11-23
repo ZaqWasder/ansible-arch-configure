@@ -1,0 +1,9 @@
+---
+- name: Copy mkinitcpio.conf
+  ansible.builtin.template:
+    src: mkinitcpio.conf.j2
+    dest: /etc/mkinitcpio.conf
+    owner: root
+    group: root
+    mode: '644'
+  notify: update_initramfs

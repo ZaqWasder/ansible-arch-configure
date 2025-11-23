@@ -1,14 +1,15 @@
 ---
-initramfs_hooks:
-  - systemd
-  - autodetect
-  - microcode
-  - modconf
-  - kms
-  - keyboard
-  - keymap
-  - consolefont
-  - lvm2
-  - block
-  - filesystems
-  - fsck
+initramfs:
+  hooks:
+    - systemd
+    - autodetect
+    - microcode
+    - modconf
+    - kms
+    - keyboard
+    - keymap
+    - consolefont
+    - lvm2
+    - block
+    - filesystems
+    - fsck

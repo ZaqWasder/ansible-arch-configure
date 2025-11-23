@@ -12,4 +12,5 @@
     creates: "{{ chezmoi_source_dir }}"
   register: chezmoi_result
   failed_when: chezmoi_result.rc != 0
+  become: true
   become_user: "{{ common_user }}"

@@ -7,7 +7,12 @@
 
 - name: Set gopass mounts path variable
   ansible.builtin.set_fact:
-    gopass_mounts_path: "{{ gopass_config.stdout | regex_search('mounts\\.path\\s*=\\s*(\\S+)', '\\1') | first }}"
+    gopass_mounts_path: >-
+      {{
+        gopass_config.stdout
+        | regex_search('mounts\\.path\\s*=\\s*(\\S+)', '\\1')
+        | first
+      }}
 
 - name: Check if gopass store exists
   ansible.builtin.stat:

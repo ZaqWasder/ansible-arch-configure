@@ -16,6 +16,9 @@
   ansible.builtin.template:
     src: iptables.rules.j2
     dest: "{{ iptables_conf_dir }}/iptables.rules"
+    user: root
+    group: root
+    mode: "644"
   notify:
     - Reload iptables
 
@@ -23,5 +26,8 @@
   ansible.builtin.template:
     src: ip6tables.rules.j2
     dest: "{{ iptables_conf_dir }}/ip6tables.rules"
+    user: root
+    group: root
+    mode: "644"
   notify:
     - Reload ip6tables

@@ -1,10 +1,13 @@
 ---
 - name: Create sshd_config and set permissions
-  template:
+  ansible.builtin.template:
     src: sshd.conf.j2
-    dest: /etc/ssh/sshd_config 
+    dest: /etc/ssh/sshd_config
     mode: "0600"
     owner: "{{ ssh_owner }}"
     group: "{{ ssh_group }}"
-    validate: "{{ sshd_path }} -T -C user=root -C host=localhost -C addr=localhost -C lport={{ ssh_client_port }} -f %s"
-  notify: restart sshd
+    validate: >-
+      {{ sshd_path }} -T -C user=root
+      -C host=localhost -C addr=localhost
+      -C lport={{ ssh_client_port }} -f %s
+  notify: Restart sshd

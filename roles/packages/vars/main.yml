@@ -15,7 +15,7 @@ pacman_packages:
   - fzf
   - git
   - gnupg
-  - gopass 
+  - gopass
   - grim
   - grub
   - gst-plugin-pipewire

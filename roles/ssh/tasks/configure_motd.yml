@@ -14,7 +14,7 @@
         path: /etc/pam.d/system-login
         regexp: '^(session.*optional.*pam_motd.so)'
         line: '\1          motd=/etc/motd'
-        backrefs: yes
+        backrefs: true
     - name: Add motd generate script
       ansible.builtin.lineinfile:
         path: /etc/pam.d/system-login

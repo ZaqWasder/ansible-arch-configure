@@ -1,14 +1,19 @@
 ---
-- name: Assert default locale
+- name: Assert variables
   ansible.builtin.assert:
     that:
+      - locale is defined
       - locale.default is defined
       - locale.default is string
-    quiet: true
-
-- name: Assert additional locales
-  ansible.builtin.assert:
-    that:
       - locale.additional is defined
       - locale.additional | type_debug == 'list'
     quiet: true
+
+- name: Assert locales exists in /etc/locale.gen
+  ansible.builtin.lineinfile:
+    path: /etc/locale.gen
+    regexp: "^(#)?{{ item }}$"
+    line: \1{{ item }}
+    state: present
+    backrefs: true
+  loop: "{{ [locale.default] + locale.additional }}"

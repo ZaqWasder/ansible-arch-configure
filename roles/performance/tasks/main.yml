@@ -1,4 +1,7 @@
 ---
+- name: Assert
+  ansible.builtin.import_tasks: assert.yml
+
 - name: Install and configure zram-generator
   ansible.builtin.import_tasks: zram-generator.yml
   become: true

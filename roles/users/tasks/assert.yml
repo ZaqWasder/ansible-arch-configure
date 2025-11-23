@@ -1,0 +1,15 @@
+---
+- name: Assert variables
+  ansible.builtin.assert:
+    that:
+      - users is defined
+      - users | type_debug == 'list'
+
+- name: Assert users params exists
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.additional_groups is defined
+      - item.additional_groups | type_debug == 'list'
+  loop: "{{ users }}"

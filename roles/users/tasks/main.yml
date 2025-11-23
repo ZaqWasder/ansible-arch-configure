@@ -1,12 +1,7 @@
 ---
-- name: Create user
-  ansible.builtin.user:
-    name: "{{ item.name }}"
-    comment: "{{ item.full_name }}"
-    groups: "{{ item.additional_groups }}"
-    shell: "{{ item.shell }}"
-    create_home: "{{ item.create_home }}"
-    append: "{{ item.append_groups }}"
-    state: present
+- name: Assert
+  ansible.builtin.import_tasks: assert.yml
+
+- name: Create users
+  ansible.builtin.import_tasks: create.yml
   become: true
-  loop: "{{ users }}"

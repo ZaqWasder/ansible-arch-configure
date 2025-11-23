@@ -14,3 +14,11 @@
       - chezmoi_source_dir is string
       - chezmoi_source_dir | length > 0
     quiet: true
+
+- name: Assert chezmoi_branch
+  ansible.builtin.assert:
+    that:
+      - chezmoi_branch is defined
+      - chezmoi_branch is string
+      - chezmoi_branch | length > 0
+    quiet: true

@@ -105,7 +105,6 @@ UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
 PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 PrintMotd no
 
-
 {% if sftp_enabled %}
 # SFTP matching configuration
 # ===========================

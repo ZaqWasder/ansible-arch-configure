@@ -1,8 +1,22 @@
 ---
+- name: Include custom sshd config to default config
+  block:
+    - name: Remove curent Include
+      ansible.builtin.lineinfile:
+        path: "{{ sshd_default_conf_file }}"
+        regexp: "^Include.*$"
+        state: absent
+    - name: Include custom sshd config
+      ansible.builtin.lineinfile:
+        path: "{{ sshd_default_conf_file }}"
+        line: "Include {{ sshd_custom_conf_dir }}/*.conf"
+        insertafter: EOF
+        state: present
+
 - name: Create sshd_config and set permissions
   ansible.builtin.template:
     src: sshd.conf.j2
-    dest: "{{ sshd_conf_dir }}/99-sshd.conf"
+    dest: "{{ sshd_custom_conf_file }}"
     mode: "0600"
     owner: "{{ ssh_owner }}"
     group: "{{ ssh_group }}"

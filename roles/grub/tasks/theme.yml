@@ -48,8 +48,11 @@
             | map(attribute='path')
             | first
           }}
-      failed_when:
-        - theme_txt_path | regex_search(' ')
+
+    - name: Fail when theme_txt_path contains spaces
+      ansible.builtin.fail:
+        msg: "Path {{ theme_txt_path }} contains spaces!"
+      when: theme_txt_path | regex_search(' ')
 
     - name: Add GRUB_THEME variable to {{ grub_conf_file }}
       ansible.builtin.lineinfile:

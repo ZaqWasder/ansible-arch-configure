@@ -7,24 +7,14 @@
   ansible.builtin.import_tasks: install.yml
   become: true
 
-- name: Set grub theme
-  ansible.builtin.import_tasks: theme.yml
-  become: true
-  when:
-    - grub_set_theme
-    - grub_theme_dir is defined
-    - grub_theme_name is defined
-
 - name: Configure grub
   ansible.builtin.import_tasks: configure.yml
+  become: true
+
+- name: Set grub theme
+  ansible.builtin.import_tasks: theme.yml
   become: true
 
 - name: Set grub password
   ansible.builtin.import_tasks: password.yml
   become: true
-  when:
-    - grub_set_password
-    - grub_superuser is defined
-    - grub_superuser | length > 0
-    - grub_superuser_password is defined
-    - grub_superuser_password | length > 0

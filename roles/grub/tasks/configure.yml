@@ -1,25 +1,38 @@
 ---
-- name: Remove /etc/grub.d/40_set_grub_password
-  ansible.builtin.file:
-    path: /etc/grub.d/40_set_grub_password
-    state: absent
-
 - name: Backup /etc/default/grub
   ansible.builtin.copy:
-    src: /etc/default/grub
-    dest: /etc/default/grub.backup_{{ now(fmt='%y.%m.%d_%H:%M:%S') }}"
+    src: "{{ grub_conf_file }}"
+    dest: "{{ grub_conf_file }}.backup_{{ now(fmt='%y.%m.%d_%H:%M:%S') }}"
     remote_src: true
     owner: root
     group: root
     mode: '644'
 
-- name: Copy /etc/default/grub
-  ansible.builtin.template:
-    src: grub.j2
-    dest: /etc/default/grub
-    owner: root
-    group: root
-    mode: '644'
+- name: Configure grub
   notify:
     - Update grub
-  changed_when: true
+  block:
+    - name: Change GRUB_DEFAULT
+      ansible.builtin.lineinfile:
+        path: "{{ grub_conf_file }}"
+        regexp: '^(GRUB_DEFAULT=).*$'
+        line: '\g<1>{{ grub_default }}'
+        backrefs: true
+    - name: Change GRUB_TIMEOUT
+      ansible.builtin.lineinfile:
+        path: "{{ grub_conf_file }}"
+        regexp: '^(GRUB_TIMEOUT=).*$'
+        line: '\g<1>{{ grub_timeout }}'
+        backrefs: true
+    - name: Change GRUB_CMDLINE_LINUX_DEFAULT
+      ansible.builtin.lineinfile:
+        path: "{{ grub_conf_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=".*)"$'
+        line: '\g<1> {{ grub_cmdline_linux_default }}"'
+        backrefs: true
+    - name: Change GRUB_CMDLINE_LINUX
+      ansible.builtin.lineinfile:
+        path: "{{ grub_conf_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX=".*)"$'
+        line: '\g<1> {{ grub_cmdline_linux }}"'
+        backrefs: true

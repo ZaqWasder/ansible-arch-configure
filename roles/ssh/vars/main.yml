@@ -1,5 +1,7 @@
 ---
 sshd_path: /usr/sbin/sshd
+ssh_conf_dir: /etc/ssh/ssh_config.d
+sshd_conf_dir: /etc/ssh/sshd_config.d
 sshd_service_name: sshd
 ssh_owner: root
 ssh_group: root

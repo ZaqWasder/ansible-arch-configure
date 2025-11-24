@@ -11,7 +11,5 @@
   ansible.builtin.import_tasks: configure_server.yml
   become: true
 
-- name: Configure motd
-  ansible.builtin.import_tasks: configure_motd.yml
-  become: true
-  when: ssh_print_motd
+- name: Configure keys
+  ansible.builtin.import_tasks: configure_keys.yml

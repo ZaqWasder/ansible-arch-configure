@@ -102,8 +102,8 @@ AcceptEnv {{ ssh_server_accept_env_vars }}
 
 Compression {{ 'yes' if ssh_compression else 'no' }}
 UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
-PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
+PrintMotd no
 
 
 {% if sftp_enabled %}

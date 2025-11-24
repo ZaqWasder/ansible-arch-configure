@@ -2,7 +2,7 @@
 - name: Create sshd_config and set permissions
   ansible.builtin.template:
     src: sshd.conf.j2
-    dest: /etc/ssh/sshd_config
+    dest: "{{ sshd_conf_dir }}/99-sshd.conf"
     mode: "0600"
     owner: "{{ ssh_owner }}"
     group: "{{ ssh_group }}"

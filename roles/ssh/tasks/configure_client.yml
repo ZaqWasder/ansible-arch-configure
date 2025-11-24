@@ -2,7 +2,7 @@
 - name: Create ssh_config and set permissions
   ansible.builtin.template:
     src: ssh.conf.j2
-    dest: /etc/ssh/ssh_config
+    dest: "{{ ssh_conf_dir }}/99-ssh.conf"
     mode: "0644"
     owner: "{{ ssh_owner }}"
     group: "{{ ssh_group }}"

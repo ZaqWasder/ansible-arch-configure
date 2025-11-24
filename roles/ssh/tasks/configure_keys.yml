@@ -1,0 +1,24 @@
+---
+- name: Set key_owner and key_owner_group
+  ansible.builtin.set_fact:
+    key_owner: "{{ users | map(attribute='name') | first }}"
+    key_owner_group: "{{ users | map(attribute='group') | first }}"
+
+- name: Copy ssh private key
+  ansible.builtin.copy:
+    src: encrypted_private_ssh_key
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh/id_rsa"
+    decrypt: true
+    mode: '0600'
+    user: "{{ key_owner }}"
+    group: "{{ key_owner_group }}"
+  no_log: true
+
+- name: Copy ssh public key
+  ansible.builtin.copy:
+    src: id_rsa.pub
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh/id_rsa.pub"
+    mode: '0644'
+    user: "{{ key_owner }}"
+    group: "{{ key_owner_group }}"
+  no_log: true

@@ -3,5 +3,6 @@
   ansible.builtin.service:
     name: '{{ sshd_service_name }}'
     state: restarted
+    enabled: true
   when: ssh_server_enabled
   become: true

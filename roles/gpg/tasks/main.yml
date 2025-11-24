@@ -1,7 +1,17 @@
 ---
+- name: Decrypt and copy private gpg key to temp dir
+  ansible.builtin.copy:
+    src: private.gpg
+    dest: "{{ gpg_tmp_dir }}/private.gpg"
+    decrypt: true
+    mode: '0600'
+  no_log: true
+
 - name: Import gpg keys
   ansible.builtin.command:
-    cmd: "gpg --import {{ item }}"
-  loop:
-    - "{{ gpg_public_key_file_path }}"
-    - "{{ gpg_private_key_file_path }}"
+    cmd: "gpg --import {{ gpg_tmp_dir }}/private.gpg"
+
+- name: Remove decrypted private gpg key
+  ansible.builtin.file:
+    path: "{{ gpg_tmp_dir }}/private.gpg"
+    state: absent

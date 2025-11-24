@@ -1,41 +1,42 @@
 hostname: arch
 timezone: "Europe/Moscow"
-default_locale: en_US.UTF-8
-locales:
-  - en_US.UTF-8
-  - ru_RU.UTF-8
-ntp_servers:
-  - 0.arch.pool.ntp.org
-  - 1.arch.pool.ntp.org
-  - 2.arch.pool.ntp.org
-  - 3.arch.pool.ntp.org
-fallback_ntp_servers:
-  - 0.pool.ntp.org
-  - 1.pool.ntp.org
-  - 2.pool.ntp.org
-  - 3.pool.ntp.org
-initramfs_hooks:
-  - systemd
-  - autodetect
-  - microcode
-  - modconf
-  - kms
-  - keyboard
-  - keymap
-  - consolefont
-  - lvm2
-  - block
-  - filesystems
-  - fsck
+locale:
+  default: en_US.UTF-8
+  additional:
+    - ru_RU.UTF-8
+ntp:
+  primary_servers:
+    - 0.arch.pool.ntp.org
+    - 1.arch.pool.ntp.org
+    - 2.arch.pool.ntp.org
+    - 3.arch.pool.ntp.org
+  fallback_servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 2.pool.ntp.org
+    - 3.pool.ntp.org
+initramfs:
+  hooks:
+    - systemd
+    - autodetect
+    - microcode
+    - modconf
+    - kms
+    - keyboard
+    - keymap
+    - consolefont
+    - lvm2
+    - block
+    - filesystems
+    - fsck
 grub_set_theme: true
 grub_themes_repo_url: "https://github.com/13atm01/GRUB-Theme.git"
 grub_theme_dir: "/usr/share/grub/themes"
 grub_theme_name: "Airani-Iofifteen"
 grub_set_password: false
-grub_superuser: admin
-grub_superuser_password: ""
 users:
   - name: jetron
+    group: jetron
     full_name: Artem Budarin
     shell: /usr/bin/zsh
     additional_groups:
@@ -44,16 +45,11 @@ users:
     append_groups: true
 chezmoi_repo_url: "git@github.com:ZaqWasder/dotfiles.git"
 chezmoi_branch: "hyprland-balcony-theme"
-
-# ssh
+#
+## ssh
 ssh_server_enabled: true
 ssh_server_ports: ['2022']
 ssh_client_port: '22'
-ssh_print_motd: true
 ssh_print_last_log: true
-
-gpg_keys_dir: "/tmp/files"
-gpg_public_key_file_path: "{{ gpg_keys_dir }}/public.gpg"
-gpg_private_key_file_path: "{{ gpg_keys_dir }}/secret.gpg"
 
 gopass_repo_url: "git@github.com:ZaqWasder/pass.git"

@@ -1,5 +1,8 @@
 - name: Configure arch environment
   hosts: local
+  vars_files:
+    - group_vars/local.yml
+    - group_vars/secrets.yml
 
   roles:
     - name: console

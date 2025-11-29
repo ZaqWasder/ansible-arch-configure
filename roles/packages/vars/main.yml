@@ -24,6 +24,7 @@ pacman_packages:
   - hyprshot
   - hyprpaper
   - hyprpicker
+  - inotify-tools
   - intel-media-driver
   - intel-ucode
   - iptables
@@ -43,6 +44,7 @@ pacman_packages:
   - neovim
   - network-manager-applet
   - networkmanager
+  - nwg-look
   - obsidian
   - openssh
   - pacman-contrib
@@ -59,6 +61,7 @@ pacman_packages:
   - reflector
   - rsync
   - sddm
+  - shellcheck
   - slurp
   - smartmontools
   - sof-firmware
@@ -76,6 +79,7 @@ pacman_packages:
   - vulkan-radeon
   - waybar
   - wget
+  - wev
   - wireless_tools
   - wireplumber
   - wofi
@@ -88,6 +92,7 @@ pacman_packages:
   - xorg-server
   - xorg-xinit
   - yazi
+  - zed
   - zram-generator
   - zsh
 

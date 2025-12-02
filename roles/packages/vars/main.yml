@@ -67,6 +67,7 @@ pacman_packages:
   - sof-firmware
   - strace
   - stylua
+  - swww
   - telegram-desktop
   - thunar
   - tmux
@@ -97,8 +98,10 @@ pacman_packages:
   - zsh
 
 aur_packages:
+  - bibata-cursor-theme-bin
   - clipse
   - google-chrome
+  - matugen-bin
   - rar
 
 fonts:

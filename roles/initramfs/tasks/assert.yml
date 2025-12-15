@@ -5,3 +5,5 @@
       - initramfs is defined
       - initramfs.hooks is defined
       - initramfs.hooks | type_debug == 'list'
+      - initramfs.modules is defined
+      - initramfs.modules | type_debug == 'list'

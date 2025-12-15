@@ -1,8 +1,8 @@
 ---
 - name: Copy mkinitcpio.conf
   ansible.builtin.template:
-    src: mkinitcpio.conf.j2
-    dest: /etc/mkinitcpio.conf
+    src: custom.conf.j2
+    dest: "{{ initramfs_conf_dir }}/custom.conf"
     owner: root
     group: root
     mode: '644'

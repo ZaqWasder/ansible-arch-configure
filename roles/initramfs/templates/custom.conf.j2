@@ -1,6 +1,4 @@
-MODULES=()
-BINARIES=()
-FILES=()
+MODULES=({{ initramfs.modules | join(' ') }})
 HOOKS=({{ initramfs.hooks | join(' ') }})
 COMPRESSION="lz4"
 COMPRESSION_OPTIONS=(-9)

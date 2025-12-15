@@ -1,5 +1,6 @@
 ---
 initramfs:
+  modules: []
   hooks:
     - systemd
     - autodetect
@@ -9,7 +10,6 @@ initramfs:
     - keyboard
     - keymap
     - consolefont
-    - lvm2
     - block
     - filesystems
     - fsck

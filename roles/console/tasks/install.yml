@@ -1,6 +1,0 @@
----
-- name: Install fonts
-  community.general.pacman:
-    name: terminus-font
-    state: present
-    update_cache: true

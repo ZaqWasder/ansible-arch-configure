@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source ./scripts/env.sh
 source ./utils
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 filter=""

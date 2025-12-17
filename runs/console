@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+CONSOLE_FONT_FILE="/etc/vconsole.conf"
+cat ./templates/vconsole.conf.tmpl | envsubst > ${CONSOLE_FONT_FILE} 

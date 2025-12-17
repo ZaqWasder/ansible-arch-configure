@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+source ./utils
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+filter=""
+dry_run="0"
+
+while (( $# > 0 )); do
+    if [[ $1 == "--dry" ]]; then
+        dry_run="1"
+    else
+	filter="$1"
+    fi
+    shift
+done
+
+cd "$script_dir" || exit 1
+scripts=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
+
+for script in $scripts; do
+    if echo "$script" | grep -vq "$filter"; then
+	log "filtering $script"
+        continue
+    fi
+
+    execute "$script"
+done

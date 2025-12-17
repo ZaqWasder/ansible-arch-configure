@@ -1,0 +1,38 @@
+RED_COLOR="\033[31m"
+GREEN_COLOR="\033[32m"
+YELLOW_COLOR="\033[33m"
+MAGENTA_COLOR="\033[35m"
+RESET="\033[0m"
+
+print_colored() {
+    color=$1
+    shift
+    if [[ $color == "red" ]]; then
+        printf "${RED_COLOR}%s${RESET}\n" "$@"
+    elif [[ $color = "green" ]]; then
+        printf "${GREEN_COLOR}%s${RESET}\n" "$@"
+    elif [[ $color = "yellow" ]]; then
+        printf "${YELLOW_COLOR}%s${RESET}\n" "$@"
+    elif [[ $color = "magenta" ]]; then
+        printf "${MAGENTA_COLOR}%s${RESET}\n" "$@"
+    else
+        echo "$@"
+    fi
+}
+
+log() {
+    if [[ $dry_run == "1" ]]; then
+        print_colored yellow "[DRY_RUN]: $*"
+    else
+        print_colored green "$@"
+    fi
+}
+
+execute() {
+    log "execute $*"
+    if [[ $dry_run == "1" ]]; then
+        return
+    fi
+
+    "$@"
+}

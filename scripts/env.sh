@@ -128,11 +128,12 @@ export AUR_PACKAGES=(
     rar
 )
 
-export LOCALTIME="Europe/Moscow"
+export TIMEZONE="Europe/Moscow"
 export DEFAULT_LOCALE="en_US.UTF-8"
 export ADDITIONAL_LOCALES=(
     "ru_RU.UTF-8"
 )
+export LOCALES=( "$DEFAULT_LOCALE" "${ADDITIONAL_LOCALES[@]}" )
 
 export REPO_NAME="ansible-arch-configure"
 export ARCH_CONFIGURE_REPO="https://github.com/ZaqWasder/${REPO_NAME}.git"

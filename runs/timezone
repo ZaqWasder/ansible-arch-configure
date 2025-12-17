@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+TIMEZONE_DIR="/usr/share/zoneinfo"
+
+ln -sf ${TIMEZONE_DIR}/${TIMEZONE} /etc/localtime
+hwclock --systohc

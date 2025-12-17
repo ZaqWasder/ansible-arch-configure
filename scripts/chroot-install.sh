@@ -4,7 +4,7 @@ set -eu
 source env.sh
 
 # postinstall
-ln -sf /usr/share/zoneinfo/${LOCALTIME} /etc/localtime
+ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 hwclock --systohc
 
 for lcl in ${LOCALES[@]}; do

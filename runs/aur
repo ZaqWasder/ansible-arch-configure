@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+source envs/users.env
+
+if ! command -v ${AUR_HELPER} >/dev/null; then
+    git clone ${AUR_HELPER_REPO} /tmp/${AUR_HELPER}
+    chown ${USER_NAME}:${USER_NAME} /tmp/${AUR_HELPER}
+    pushd /tmp/${AUR_HELPER}
+    sudo -u ${USER_NAME} makepkg -si
+    popd
+fi
+
+# Upgrade AUR packages and install new
+sudo -u ${USER_NAME} ${AUR_HELPER} -Sua
+sudo -u ${USER_NAME} ${AUR_HELPER} -S ${AUR_PACKAGES[@]}

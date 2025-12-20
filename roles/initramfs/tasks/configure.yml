@@ -1,9 +1,0 @@
----
-- name: Copy mkinitcpio.conf
-  ansible.builtin.template:
-    src: custom.conf.j2
-    dest: "{{ initramfs_conf_dir }}/custom.conf"
-    owner: root
-    group: root
-    mode: '644'
-  notify: update_initramfs

@@ -1,7 +1,0 @@
----
-- name: Assert
-  ansible.builtin.import_tasks: assert.yml
-
-- name: Configure initramfs
-  ansible.builtin.import_tasks: configure.yml
-  become: true

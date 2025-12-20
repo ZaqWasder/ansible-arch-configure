@@ -1,3 +1,0 @@
----
-update_initramfs_command: mkinitcpio -P
-initramfs_conf_dir: /etc/mkinitcpio.conf.d

@@ -5,9 +5,6 @@
     - group_vars/secrets.yml
 
   roles:
-    - name: hostname
-      tags: ['hostname']
-
     - name: initramfs
       tags: ['initramfs']
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+envsubst < ./templates/custom_timesyncd.conf.tmpl > ${TIMESYNCD_CONF_DIR}/custom_timesyncd.conf
+systemctl restart ${SERVICE_NAME}

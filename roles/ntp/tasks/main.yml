@@ -1,7 +1,0 @@
----
-- name: Assert variables
-  ansible.builtin.import_tasks: assert.yml
-
-- name: Configure systemd-timesyncd
-  ansible.builtin.import_tasks: configure.yml
-  become: true

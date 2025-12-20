@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+set -eu
 
-TIMEZONE_DIR="/usr/share/zoneinfo"
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
 
 ln -sf ${TIMEZONE_DIR}/${TIMEZONE} /etc/localtime
 hwclock --systohc

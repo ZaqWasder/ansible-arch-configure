@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+envsubst < ./templates/custom_pacman.conf.tmpl > ${PACMAN_CONF_FILE}
+envsubst < ./templates/custom_reflector.conf.tmpl > ${REFLECTOR_CONF_DIR}/reflector.conf
+
+pacman -Syu
+pacman -S --noconfirm reflector pacman-contrib
+
+reflector --country Russia --sort rate --threads $(nproc) --ipv4 --save ${PACMAN_MIRRORS_FILE}
+
+pacman -S ${PACMAN_PACKAGES[@]}

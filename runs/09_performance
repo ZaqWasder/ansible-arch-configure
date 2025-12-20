@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+pacman -S ${PERFORMANCE_PACKAGES[@]}
+
+envsubst < ./templates/sysctl-performance.conf.tmpl > ${SYSCTL_CONF_FILE}
+envsubst < ./templates/zram-generator.conf.tmpl > ${ZRAM_CONF_FILE}
+
+
+systemctl daemon-reload
+systemctl start systemd-zram-setup@${ZRAM_DEVICE_NAME}.service
+systemctl enable --now earlyoom.service
+systemctl enable --now irqbalance.service
+systemctl enable --now fstrim.timer
+sysctl -p ${SYSCTL_CONF_FILE}

@@ -1,4 +1,0 @@
----
-device_name: zram0
-sysctl_config_dir: /etc/sysctl.d
-sysctl_config_file: "{{ sysctl_config_dir }}/99-performance.conf"

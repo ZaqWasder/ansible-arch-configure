@@ -1,6 +1,0 @@
----
-- name: Assert variables
-  ansible.builtin.assert:
-    that:
-      - sysctl_params is defined
-      - sysctl_params | type_debug == 'list'

@@ -1,7 +1,0 @@
----
-- name: Enable fstrim timer
-  ansible.builtin.systemd_service:
-    name: fstrim.timer
-    state: started
-    enabled: true
-    daemon_reload: true

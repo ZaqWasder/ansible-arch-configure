@@ -3,7 +3,7 @@ set -eu
 
 script_name=$(basename "${BASH_SOURCE[0]}")
 source envs/${script_name}.env
-source envs/users.env
+source envs/06_users.env
 
 if ! command -v ${AUR_HELPER} >/dev/null; then
     git clone ${AUR_HELPER_REPO} /tmp/${AUR_HELPER}

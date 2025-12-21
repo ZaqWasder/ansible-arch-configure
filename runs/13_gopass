@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+if [[ ! -d ${GOPASS_STORE_PATH} ]]; then
+    mkdir -p ${GOPASS_STORE_PATH}
+    git clone ${GOPASS_REPO_URL} ${GOPASS_STORE_PATH}
+fi

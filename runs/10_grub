@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+sed -Ei 's/^(#)?GRUB_DEFAULT=.*$/GRUB_DEFAULT=0/' ${GRUB_CONF_FILE}
+sed -Ei 's/^(#)?GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=10/' ${GRUB_CONF_FILE}
+sed -Ei '/^(#)?GRUB_THEME=.*$/d' ${GRUB_CONF_FILE}
+
+if (( ${GRUB_SET_THEME} )); then
+    if [[ ! -d ${GRUB_THEME_DIR} ]]; then
+        git clone ${GRUB_THEMES_REPO} ${GRUB_THEME_DIR}
+    fi
+    "${GRUB_THEME_DIR}/${GRUB_THEME_NAME}/install.sh"
+fi
+
+grub-mkconfig -o /boot/grub/grub.cfg

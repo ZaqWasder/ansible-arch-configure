@@ -5,21 +5,6 @@
     - group_vars/secrets.yml
 
   roles:
-    - name: grub
-      tags: ['grub']
-
-    - name: pacman
-      tags: ['pacman']
-
-    - name: packages
-      tags: ['packages']
-
-    - name: performance
-      tags: ['performance']
-
-    - name: users
-      tags: ['users']
-
     - name: ssh
       tags: ['ssh']
 

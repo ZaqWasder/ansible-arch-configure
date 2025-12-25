@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+source ${ENV_FILE}
 
-echo "LANG=${DEFAULT_LOCALE}" > ${LOCALE_CONF_FILE}
+LOCALE_CONF_DIR="/etc"
+LOCALE_CONF_FILE="locale.conf"
+LOCALES_GEN_FILE="locale.gen"
+LOCALES=( "$DEFAULT_LOCALE" "${ADDITIONAL_LOCALES[@]}" )
+
+backup ${LOCALE_CONF_DIR}/${LOCALE_CONF_FILE}
+echo "LANG=${DEFAULT_LOCALE}" > ${TEMP_DIR}/${LOCALE_CONF_FILE}
+$SUDO mv ${TEMP_DIR}/${LOCALE_CONF_FILE} ${LOCALE_CONF_DIR}/${LOCALE_CONF_FILE}
 
 for lcl in ${LOCALES[@]}; do
-    sed -i "/${lcl}/s/^#//" /etc/locale.gen
+    $SUDO sed -i "/${lcl}/s/^#//" ${LOCALE_CONF_DIR}/${LOCALES_GEN_FILE}
 done
 
-locale-gen
+$SUDO locale-gen

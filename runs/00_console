@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+CONSOLE_FONT_DIR="/etc"
+CONSOLE_FONT_FILE="vconsole.conf"
 
-envsubst < ./templates/vconsole.conf.tmpl > ${CONSOLE_FONT_FILE}
+envsubst < ./${TEMPLATES_DIR}/${CONSOLE_FONT_FILE}.tmpl > ${TEMP_DIR}/${CONSOLE_FONT_FILE}
+$SUDO mv ${TEMP_DIR}/${CONSOLE_FONT_FILE} ${CONSOLE_FONT_DIR}/${CONSOLE_FONT_FILE}

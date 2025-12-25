@@ -37,4 +37,10 @@ execute() {
     "$@"
 }
 
+SUDO="sudo"
+if (( $UID == 0 )); then
+    SUDO=""
+fi
+
+export SUDO
 export -f print_colored

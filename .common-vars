@@ -1,0 +1,2 @@
+export TEMP_DIR="/tmp"
+export TEMPLATES_DIR="templates"

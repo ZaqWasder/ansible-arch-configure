@@ -1,4 +1,0 @@
----
-chezmoi_repo_url: ""
-chezmoi_source_dir: "{{ lookup('ansible.builtin.env', 'XDG_DATA_HOME') }}/chezmoi"
-chezmoi_branch: "main"

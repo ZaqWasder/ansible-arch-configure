@@ -1,7 +1,0 @@
----
-- name: Install chezmoi package
-  community.general.pacman:
-    name:
-      - chezmoi
-    state: present
-    update_cache: true

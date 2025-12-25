@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-source ./scripts/env.sh
-source ./utils
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+source ${script_dir}/scripts/env.sh
+source ${script_dir}/.utils
+source ${script_dir}/.env
+
 filter=""
 dry_run="0"
 

@@ -1,3 +1,5 @@
+source ./.common-vars
+
 print_colored() {
     RED_COLOR="\033[31m"
     GREEN_COLOR="\033[32m"
@@ -37,6 +39,13 @@ execute() {
     "$@"
 }
 
+backup() {
+    FILE_PATH=$1
+    FILE_NAME=$(basename $FILE_PATH)
+    POSTFIX="backup_$(date +%F_%R)"
+    cp $FILE_PATH $BACKUP_DIR/${FILE_NAME}.${POSTFIX}
+}
+
 SUDO="sudo"
 if (( $UID == 0 )); then
     SUDO=""
@@ -44,3 +53,4 @@ fi
 
 export SUDO
 export -f print_colored
+export -f backup

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eu
+
+script_name=$(basename "${BASH_SOURCE[0]}")
+source envs/${script_name}.env
+
+$SUDO rm -r ${IPTABLES_CONF_DIR}
+$SUDO mkdir -p ${IPTABLES_CONF_DIR}
+
+envsubst < ./templates/${IPTABLES_CONF_FILE_NAME}.tmpl > /tmp/${IPTABLES_CONF_FILE_NAME}
+envsubst < ./templates/${IP6TABLES_CONF_FILE_NAME}.tmpl > /tmp/${IP6TABLES_CONF_FILE_NAME}
+
+$SUDO mv /tmp/${IPTABLES_CONF_FILE_NAME} ${IPTABLES_CONF_DIR}/${IPTABLES_CONF_FILE_NAME}
+$SUDO mv /tmp/${IP6TABLES_CONF_FILE_NAME} ${IPTABLES_CONF_DIR}/${IP6TABLES_CONF_FILE_NAME}
+
+$SUDO systemctl restart iptables
+$SUDO systemctl restart ip6tables

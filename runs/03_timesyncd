@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+source ${ENV_FILE}
 
-envsubst < ./templates/custom_timesyncd.conf.tmpl > ${TIMESYNCD_CONF_DIR}/custom_timesyncd.conf
-systemctl restart ${SERVICE_NAME}
+TIMESYNCD_CONF_DIR="/etc/systemd/timesyncd.conf.d"
+TINESYNCD_CONF_FILE="custom_timesyncd.conf"
+SERVICE_NAME="systemd-timesyncd"
+
+export NTP=$(arr_join ' ' ${NTP_SERVERS[@]})
+export FALLBACK_NTP=$(arr_join ' ' ${FALLBACK_NTP_SERVERS[@]})
+
+backup ${TIMESYNCD_CONF_DIR}/${TINESYNCD_CONF_FILE}
+envsubst < ${TEMPLATES_DIR}/${TINESYNCD_CONF_FILE}.tmpl > ${TEMP_DIR}/${TINESYNCD_CONF_FILE}
+$SUDO mv ${TEMP_DIR}/${TINESYNCD_CONF_FILE} ${TIMESYNCD_CONF_DIR}/${TINESYNCD_CONF_FILE}
+
+$SUDO systemctl restart ${SERVICE_NAME}

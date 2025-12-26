@@ -46,6 +46,18 @@ backup() {
     cp $FILE_PATH $BACKUP_DIR/${FILE_NAME}.${POSTFIX}
 }
 
+arr_join() {
+    local str=""
+    local delimiter="$1"
+    shift
+    
+    for arg; do
+        str="${str}${delimiter}${arg}"
+    done
+
+    echo "${str}"
+}
+
 SUDO="sudo"
 if (( $UID == 0 )); then
     SUDO=""
@@ -54,3 +66,4 @@ fi
 export SUDO
 export -f print_colored
 export -f backup
+export -f arr_join

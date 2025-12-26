@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+source ${ENV_FILE}
+SUDO_CONF_DIR="/etc/sudoers.d"
 
 if ! grep -q ${USER_NAME} /etc/passwd; then
-    useradd -m -s ${USER_SHELL} ${USER_NAME}
-    passwd ${USER_NAME}
+    $SUDO useradd -m -s ${USER_SHELL} ${USER_NAME}
+    $SUDO passwd ${USER_NAME}
 fi
 
-usermod -G "" ${USER_NAME}
+$SUDO usermod -G "" ${USER_NAME}
 for group in ${USER_GROUPS[@]}; do
-    usermod -aG ${group} ${USER_NAME}
+    $SUDO usermod -aG ${group} ${USER_NAME}
 done
 
-echo "%wheel ALL=(ALL:ALL) ALL" > ${SUDO_CONF_DIR}/custom_sudoers
+echo "%wheel ALL=(ALL:ALL) ALL" | $SUDO tee ${SUDO_CONF_DIR}/custom_sudoers

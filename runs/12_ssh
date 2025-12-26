@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eu
+
+SSH_CONF_DIR="/home/${USER_NAME}/.ssh"
+SSH_PRIVATE_KEY_FILE="id_rsa"
+SSH_PUBLIC_KEY_FILE="id_rsa.pub"
+
+mkdir -p ${SSH_CONF_DIR}
+print_colored green "Decrypt private ssh key.."
+
+cat ${TEMPLATES_DIR}/encrypted_${SSH_PRIVATE_KEY_FILE} | ansible-vault decrypt > ${SSH_CONF_DIR}/${SSH_PRIVATE_KEY_FILE}
+cp ${TEMPLATES_DIR}/${SSH_PUBLIC_KEY_FILE} ${SSH_CONF_DIR}/${SSH_PUBLIC_KEY_FILE}
+
+chown -R ${USER_NAME}:${USER_NAME} ${SSH_CONF_DIR}
+chmod 700 ${SSH_CONF_DIR}
+chmod 600 ${SSH_CONF_DIR}/${SSH_PRIVATE_KEY_FILE}

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+GPG_PRIVATE_KEY_FILE="private.gpg"
+
 print_colored green "Enter passphrase for encrypting gpg private key.."
-cat ./templates/encrypted_private.gpg | ansible-vault decrypt > /tmp/private.gpg
-gpg --import /tmp/private.gpg
-rm /tmp/private.gpg
+cat ${TEMPLATES_DIR}/encrypted_${GPG_PRIVATE_KEY_FILE} |
+ansible-vault decrypt |
+sudo -u ${USER_NAME} gpg --import

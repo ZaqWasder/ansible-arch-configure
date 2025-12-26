@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+CHEZMOI_REPO_URL="git@github.com:ZaqWasder/dotfiles.git"
+CHEZMOI_BRANCH="hyprland-balcony-theme"
 
-chezmoi init --branch ${CHEZMOI_BRANCH} --apply ${CHEZMOI_REPO_URL}
+
+sudo -u ${USER_NAME} chezmoi init --branch ${CHEZMOI_BRANCH} --apply ${CHEZMOI_REPO_URL}

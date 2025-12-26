@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
-source envs/06_users.env
+source ${ENV_FILE}
+
+AUR_HELPER="paru"
+AUR_HELPER_REPO="https://aur.archlinux.org/paru.git"
 
 if ! command -v ${AUR_HELPER} >/dev/null; then
     git clone ${AUR_HELPER_REPO} /tmp/${AUR_HELPER}

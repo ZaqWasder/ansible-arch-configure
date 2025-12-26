@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+source ${ENV_FILE}
 
-envsubst < ./templates/custom_initramfs.conf.tmpl > ${INITRAMFS_CONF_DIR}/custom.conf
-mkinitcpio -P
+INITRAMFS_CONF_DIR="/etc/mkinitcpio.conf.d"
+INITRAMFS_CONF_FILE="custom_initramfs.conf"
+
+export HOOKS=$(arr_join ' ' ${INITRAMFS_HOOKS[@]})
+export MODULES=$(arr_join ' ' ${INITRAMFS_MODULES[@]})
+
+backup ${INITRAMFS_CONF_DIR}/${INITRAMFS_CONF_FILE}
+envsubst < ${TEMPLATES_DIR}/${INITRAMFS_CONF_FILE}.tmpl > ${TEMP_DIR}/${INITRAMFS_CONF_FILE}
+$SUDO mv ${TEMP_DIR}/${INITRAMFS_CONF_FILE} ${INITRAMFS_CONF_DIR}/${INITRAMFS_CONF_FILE}
+
+$SUDO mkinitcpio -P

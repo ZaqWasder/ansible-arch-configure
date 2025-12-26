@@ -1,8 +1,4 @@
-REFLECTOR_CONF_DIR="/etc/xdg/reflector"
-PACMAN_CONF_FILE="/etc/pacman.conf"
-PACMAN_CONF_DIR="/etc/pacman.d"
-export PACMAN_MIRRORS_FILE="${PACMAN_CONF_DIR}/mirrorlist"
-PACMAN_PACKAGES=(
+export PACMAN_PACKAGES=(
     ansible
     base
     base-devel
@@ -28,6 +24,7 @@ PACMAN_PACKAGES=(
     gst-plugin-pipewire
     htop
     hyprland
+    hyprlock
     hyprshot
     hyprpaper
     hyprpicker
@@ -66,6 +63,7 @@ PACMAN_PACKAGES=(
     qt6-virtualkeyboard
     qt6-wayland
     reflector
+    ripgrep
     rsync
     sddm
     shellcheck

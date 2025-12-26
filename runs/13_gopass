@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
+GOPASS_STORE_PATH="/home/${USER_NAME}/.local/share/gopass/stores/root"
+GOPASS_REPO_URL="git@github.com:ZaqWasder/pass.git"
 
 if [[ ! -d ${GOPASS_STORE_PATH} ]]; then
     mkdir -p ${GOPASS_STORE_PATH}

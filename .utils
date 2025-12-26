@@ -43,12 +43,17 @@ backup() {
     FILE_PATH=$1
     FILE_NAME=$(basename $FILE_PATH)
     POSTFIX="backup_$(date +%F_%R)"
+    if [ ! -f $FILE_PATH ]; then
+        print_colored magenta "[WARNING]: backup failed! File $FILE_PATH doesn't exists!"
+        return
+    fi
     cp $FILE_PATH $BACKUP_DIR/${FILE_NAME}.${POSTFIX}
 }
 
 arr_join() {
-    local str=""
     local delimiter="$1"
+    shift
+    local str="$1"
     shift
     
     for arg; do

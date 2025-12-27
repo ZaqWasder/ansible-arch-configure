@@ -14,3 +14,25 @@ cp ${TEMPLATES_DIR}/${SSH_PUBLIC_KEY_FILE} ${SSH_CONF_DIR}/${SSH_PUBLIC_KEY_FILE
 chown -R ${USER_NAME}:${USER_NAME} ${SSH_CONF_DIR}
 chmod 700 ${SSH_CONF_DIR}
 chmod 600 ${SSH_CONF_DIR}/${SSH_PRIVATE_KEY_FILE}
+
+### Configure ssh client
+SSH_CLIENT_CONF_DIR="/etc/ssh/ssh_config.d"
+SSH_CLIENT_CONF_FILE="99-ssh-client.conf"
+
+backup ${SSH_CLIENT_CONF_DIR}/${SSH_CLIENT_CONF_FILE}
+$SUDO cp ${TEMPLATES_DIR}/${SSH_CLIENT_CONF_FILE} ${SSH_CLIENT_CONF_DIR}/${SSH_CLIENT_CONF_FILE}
+
+### Configure ssh server
+SSH_SERVER_CONF_DIR="/etc/ssh/sshd_config.d"
+SSH_SERVER_CONF_FILE="99-ssh-server.conf"
+SSHD_PATH="/usr/bin/sshd"
+SSHD_SERVICE_NAME="sshd.service"
+
+backup ${SSH_SERVER_CONF_DIR}/${SSH_SERVER_CONF_FILE}
+envsubst < ${TEMPLATES_DIR}/${SSH_SERVER_CONF_FILE} > ${TEMP_DIR}/${SSH_SERVER_CONF_FILE}
+$SUDO mv ${TEMP_DIR}/${SSH_SERVER_CONF_FILE} ${SSH_SERVER_CONF_DIR}/${SSH_SERVER_CONF_FILE}
+
+$SUDO ${SSHD_PATH} -T -C user=root -C host=localhost -C addr=localhost -C lport=22 -f ${SSH_SERVER_CONF_DIR}/${SSH_SERVER_CONF_FILE}
+
+$SUDO systemctl enable --now ${SSHD_SERVICE_NAME}
+$SUDO systemctl restart ${SSHD_SERVICE_NAME}

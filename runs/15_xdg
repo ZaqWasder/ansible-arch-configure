@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -eu
 
-xdg-user-dirs-update
+sudo -u ${USER_NAME} xdg-user-dirs-update

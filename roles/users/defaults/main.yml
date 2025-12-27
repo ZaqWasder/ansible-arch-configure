@@ -1,8 +1,0 @@
----
-users:
-  - name: archuser
-    full_name: John Doe
-    shell: /bin/bash
-    additional_groups: []
-    create_home: true
-    append_groups: true

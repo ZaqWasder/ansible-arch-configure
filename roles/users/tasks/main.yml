@@ -1,7 +1,0 @@
----
-- name: Assert
-  ansible.builtin.import_tasks: assert.yml
-
-- name: Create users
-  ansible.builtin.import_tasks: create.yml
-  become: true

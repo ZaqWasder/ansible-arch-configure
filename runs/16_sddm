@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -eu
 
-script_name=$(basename "${BASH_SOURCE[0]}")
-source envs/${script_name}.env
-source envs/06_users.env
+SDDM_CONF_DIR="/etc/sddm.conf.d"
+SDDM_CONF_FILE="autologin.conf"
 
 $SUDO mkdir -p ${SDDM_CONF_DIR}
-envsubst < ./templates/sddm-autologin.conf.tmpl > /tmp/${SDDM_CONF_FILE_NAME}
-$SUDO mv /tmp/${SDDM_CONF_FILE_NAME} ${SDDM_CONF_DIR}/${SDDM_CONF_FILE_NAME}
+envsubst < ${TEMPLATES_DIR}/${SDDM_CONF_FILE}.tmpl > ${TEMP_DIR}/${SDDM_CONF_FILE}
+$SUDO mv ${TEMP_DIR}/${SDDM_CONF_FILE} ${SDDM_CONF_DIR}/${SDDM_CONF_FILE}
+
+$SUDO systemctl enable sddm.service

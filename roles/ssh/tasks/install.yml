@@ -1,7 +1,0 @@
----
-- name: Install package
-  community.general.pacman:
-    name:
-      - openssh
-    state: present
-    update_cache: true

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eu
+
+$SUDO systemctl enable --now paccache.timer
+$SUDO systemctl enable --now reflector.timer
+$SUDO systemctl enable --now archlinux-keyring-wkd-sync.timer
+$SUDO systemctl enable --now reflector.service
+$SUDO systemctl enable --now archlinux-keyring-wkd-sync.service

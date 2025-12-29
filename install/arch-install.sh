@@ -40,9 +40,10 @@ mount --mkdir $HOME_PARTITION $HOME_MOUNTPOINT
 swapon $SWAP_PARTITION
 
 #Install archlinux to root mountpoint
-reflector --country Russia --sort rate --threads $(nproc) --ipv4 --save /etc/pacman.d/mirrorlist
-pacman -Sy
-pacstrap -K $ROOT_MOUNTPOINT ${PACMAN_PACKAGES[@]}
+#reflector --country Russia --sort rate --threads $(nproc) --ipv4 --save /etc/pacman.d/mirrorlist
+pacman -Sy archlinux-keyring
+pacman -S archlinux-keyring
+pacstrap -Ki $ROOT_MOUNTPOINT ${PACMAN_PACKAGES[@]}
 
 # Generate fstab
 genfstab -U $ROOT_MOUNTPOINT >> ${ROOT_MOUNTPOINT}/etc/fstab
@@ -51,7 +52,6 @@ echo "LANG=${DEFAULT_LOCALE}" > ${ROOT_MOUNTPOINT}/etc/locale.conf
 echo "KEYMAP=us" > ${ROOT_MOUNTPOINT}/etc/vconsole.conf
 echo "${HOSTNAME}" > ${ROOT_MOUNTPOINT}/etc/hostname
 
-# Copy chroot-install.sh and run it in chroot
-cp chroot-install.sh .env $ROOT_MOUNTPOINT
-arch-chroot $ROOT_MOUNTPOINT /chroot-install.sh
-rm ${ROOT_MOUNTPOINT}/chroot-install.sh ${ROOT_MOUNTPOINT}/.env
+# Clone repo and run chroot-install.sh
+git clone --branch $REPO_BRANCH $ARCH_CONFIGURE_REPO ${ROOT_MOUNTPOINT}${REPO_DIR}
+arch-chroot $ROOT_MOUNTPOINT ${REPO_DIR}/install/chroot-install.sh

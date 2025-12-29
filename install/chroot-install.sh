@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-source .env
+REPO_DIR="$(dirname "${BASH_SOURCE[0]}")"
+source ${REPO_DIR}/.env
 
 # postinstall
 ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
@@ -23,10 +24,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 
 useradd -m -s ${USER_SHELL} ${USER_NAME}
+usermod -aG wheel ${USER_NAME}
 echo "Enter password for root:"
 passwd
 echo "Enter password for ${USER_NAME}:"
 passwd ${USER_NAME}
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/custom_sudoers
 
-rm -rf $REPO_DIR
-git clone --branch $REPO_BRANCH $ARCH_CONFIGURE_REPO $REPO_DIR
+mkdir ${REPO_DIR}/.backups
+chown -R ${USER_NAME}:${USER_NAME} ${REPO_DIR}

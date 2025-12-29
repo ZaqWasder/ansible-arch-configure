@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-source env.sh
+source .env
 
 loadkeys us
 
@@ -52,6 +52,6 @@ echo "KEYMAP=us" > ${ROOT_MOUNTPOINT}/etc/vconsole.conf
 echo "${HOSTNAME}" > ${ROOT_MOUNTPOINT}/etc/hostname
 
 # Copy chroot-install.sh and run it in chroot
-cp {chroot-install,env}.sh $ROOT_MOUNTPOINT
+cp chroot-install.sh .env $ROOT_MOUNTPOINT
 arch-chroot $ROOT_MOUNTPOINT /chroot-install.sh
-rm ${ROOT_MOUNTPOINT}/{chroot-install,env}.sh
+rm ${ROOT_MOUNTPOINT}/chroot-install.sh ${ROOT_MOUNTPOINT}/.env

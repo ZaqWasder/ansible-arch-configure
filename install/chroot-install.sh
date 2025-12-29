@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-source env.sh
+source .env
 
 # postinstall
 ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
@@ -22,12 +22,11 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
 grub-mkconfig -o /boot/grub/grub.cfg
 
 
-#passwd
+useradd -m -s ${USER_SHELL} ${USER_NAME}
+echo "Enter password for root:"
+passwd
+echo "Enter password for ${USER_NAME}:"
+passwd ${USER_NAME}
 
-#rm -rf $ANSIBLE_REPO_DIR
-#git clone $ANSIBLE_ARCH_CONFIGURE_REPO $ANSIBLE_REPO_DIR
-#cd $ANSIBLE_REPO_DIR
-#python -m venv venv
-#source venv/bin/activate
-#pip3 install -r requirements.txt
-#ansible-galaxy install -r requirements.yml
+rm -rf $REPO_DIR
+git clone --branch $REPO_BRANCH $ARCH_CONFIGURE_REPO $REPO_DIR

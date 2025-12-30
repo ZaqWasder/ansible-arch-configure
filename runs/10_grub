@@ -12,7 +12,7 @@ $SUDO sed -Ei '/^(#)?GRUB_THEME=.*$/d' ${GRUB_CONF_FILE}
 
 if (( ${GRUB_SET_THEME} )); then
     if [[ ! -d ${GRUB_THEME_DIR} ]]; then
-        git clone ${GRUB_THEMES_REPO} ${GRUB_THEME_DIR}
+        $SUDO git clone ${GRUB_THEMES_REPO} ${GRUB_THEME_DIR}
     fi
     $SUDO "${GRUB_THEME_DIR}/${GRUB_THEME_NAME}/install.sh"
 fi

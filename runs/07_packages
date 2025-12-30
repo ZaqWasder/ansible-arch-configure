@@ -19,8 +19,8 @@ envsubst < ${TEMPLATES_DIR}/${REFLECTOR_CONF_FILE}.tmpl > ${TEMP_DIR}/${REFLECTO
 $SUDO mv ${TEMP_DIR}/${PACMAN_CONF_FILE} ${CONF_DIR}/${PACMAN_CONF_FILE}
 $SUDO mv ${TEMP_DIR}/${REFLECTOR_CONF_FILE} ${REFLECTOR_CONF_DIR}/${REFLECTOR_CONF_FILE}
 
+$SUDO pacman -Syu
 $SUDO pacman -S --noconfirm reflector pacman-contrib
 #$SUDO reflector --country Russia --sort rate --threads $(nproc) --ipv4 --save ${PACMAN_MIRRORS_FILE}
 
-$SUDO pacman -Syu
 $SUDO pacman -S ${PACMAN_PACKAGES[@]}

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -eu
+
+SERVICES=(
+    bluetooth.service
+    reflector.service
+    archlinux-keyring-wkd-sync.service
+)
+
+TIMERS=(
+    paccache.timer
+    reflector.timer
+    archlinux-keyring-wkd-sync.timer
+)
+
+for timer in ${TIMERS[@]}; do
+    $SUDO systemctl enable --now ${timer}
+done
+
+for service in ${SERVICES[@]}; do
+    $SUDO systemctl enable --now ${service}
+done

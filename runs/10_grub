@@ -14,7 +14,9 @@ if (( ${GRUB_SET_THEME} )); then
     if [[ ! -d ${GRUB_THEME_DIR} ]]; then
         $SUDO git clone ${GRUB_THEMES_REPO} ${GRUB_THEME_DIR}
     fi
-    $SUDO "${GRUB_THEME_DIR}/${GRUB_THEME_NAME}/install.sh"
+    pushd "${GRUB_THEME_DIR}/${GRUB_THEME_NAME}"
+    $SUDO ./install.sh
+    popd
 fi
 
 $SUDO grub-mkconfig -o /boot/grub/grub.cfg

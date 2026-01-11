@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+AMNEZIA_CONF_DIR="/home/${USER_NAME}/.config/AmneziaVPN.ORG"
+AMNEZIA_CONF_FILE="AmneziaVPN.conf"
+
+mkdir -p ${AMNEZIA_CONF_DIR}
+cat ${TEMPLATES_DIR}/encrypted_${AMNEZIA_CONF_FILE} | ansible-vault decrypt > ${AMNEZIA_CONF_DIR}/${AMNEZIA_CONF_FILE}

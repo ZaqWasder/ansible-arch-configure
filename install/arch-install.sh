@@ -53,5 +53,5 @@ echo "KEYMAP=us" > ${ROOT_MOUNTPOINT}/etc/vconsole.conf
 echo "${HOSTNAME}" > ${ROOT_MOUNTPOINT}/etc/hostname
 
 # Clone repo and run chroot-install.sh
-git clone --branch $REPO_BRANCH $ARCH_CONFIGURE_REPO ${ROOT_MOUNTPOINT}${REPO_DIR}
+git clone --branch $REPO_BRANCH --recurse-submodules $ARCH_CONFIGURE_REPO ${ROOT_MOUNTPOINT}${REPO_DIR}
 arch-chroot $ROOT_MOUNTPOINT ${REPO_DIR}/install/chroot-install.sh
